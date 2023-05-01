@@ -5,19 +5,29 @@ def parse_scn_file(file_path):
     with open(file_path, "r") as file:
         content = file.read()
 
-    # Remove newlines and tabs
     content = content.replace("\n", "").replace("\t", "")
 
-    node_pattern = re.compile(r"{(.*?)}", re.S)
+    node_pattern = re.compile(r"((?://.*?)+)?{(.*?)}", re.S)
     nodes = []
 
     for match in node_pattern.finditer(content):
-        node_data = match.group(1).strip().split(";")
+        comments, node_data = match.groups()
+
+        if comments:
+            comments = comments.strip().split("//")
+            comments = "\n".join(
+                comment.strip() for comment in comments if comment
+            )
+
+        node_data = node_data.strip().split(";")
         node = {}
         for data in node_data:
             if data:
                 key, value = data.split("=", 1)
                 node[key.strip()] = value.strip()
+
+        if comments:
+            node["comment"] = comments
 
         nodes.append(node)
 
@@ -74,7 +84,7 @@ def generate_plantuml_script(nodes):
 
         plantuml_script += f"class {class_name} {class_color} {{\n"
         for key, value in node.items():
-            if key not in ["id", "parent"]:
+            if key not in ["type", "id", "parent", "object"]:
                 plantuml_script += f"  {key}: {value}\n"
         plantuml_script += "}\n\n"
 
