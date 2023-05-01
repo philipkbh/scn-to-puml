@@ -25,15 +25,6 @@ def parse_scn_file(file_path):
 
 
 def generate_plantuml_script(nodes):
-    elementype_to_type = {
-        "geometry": "exception",
-        "separator": "stereotype",
-        "transform": "interface",
-        "shader": "struct",
-        "object": "metaclass",
-        "camera": "class",
-        "cave_camera": "class",
-    }
     node_colors = {
         "object": "#FFAAAA",
         "shader": "#AAFFAA",
@@ -65,8 +56,7 @@ def generate_plantuml_script(nodes):
 
         class_color = node_colors.get(node["type"], "#FFFFFF")
 
-        element_type = elementype_to_type.get(node["type"], "class")
-        plantuml_script += f"{element_type} {class_name} {class_color} {{\n"
+        plantuml_script += f"class {class_name} {class_color} {{\n"
         for key, value in node.items():
             if key not in ["id", "parent"]:
                 plantuml_script += f"  {key}: {value}\n"
