@@ -28,20 +28,20 @@ def generate_plantuml_script(nodes):
     plantuml_script = "@startuml class\n\n"
 
     node_colors = {
-        "object": "#FFAAAA",
-        "shader": "#AAFFAA",
-        "tex2d": "#AAAAFF",
-        "texcube": "#AAAAFF",
-        "separator": "#FFAAFF",
-        "transform": "#AACCFF",
-        "geometry": "#FFCCAA",
-        "camera": "#CCFFAA",
-        "cave": "#CCFFAA",
-        "cave_camera": "#CCFFAA",
-        "window": "#CCAAFF",
-        "light": "#FFFF00",
-        "skybox": "#87CEEB",
-        "renderstate": "#FFCCAA",
+        "object": "#FF9AA2",
+        "shader": "#FFB7B2",
+        "tex2d": "#FFDAC1",
+        "texcube": "#E2F0CB",
+        "separator": "#B5EAD7",
+        "transform": "#C7CEEA",
+        "geometry": "#9FD8DF",
+        "camera": "#7EA6E0",
+        "cave": "#B39BC8",
+        "cave_camera": "#7D82B8",
+        "window": "#A3D2CA",
+        "light": "#D4E2D4",
+        "skybox": "#A0C4FF",
+        "renderstate": "#9CAFB7",
     }
 
     connection_attributes = [
