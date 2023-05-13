@@ -86,7 +86,10 @@ def generate_plantuml_script(nodes):
         plantuml_script += f"class {class_name} {class_color} {{\n"
         for key, value in node.items():
             if key not in ["type", "id", "parent"]:
-                plantuml_script += f"  {key}: {value}\n"
+                if key == "comment":
+                    plantuml_script += f"  {{field}}{value}\n"
+                else:
+                    plantuml_script += f"  {{method}}{key}: {value}\n"
         plantuml_script += "}\n\n"
 
         for attr, position in connection_attributes:
