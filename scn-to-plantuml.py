@@ -35,7 +35,8 @@ def parse_scn_file(file_path):
 
 
 def generate_plantuml_script(nodes):
-    plantuml_script = "@startuml class\n\n"
+    plantuml_script = "@startuml class\n"
+    plantuml_script += "hide circle\n\n"
 
     node_colors = {
         "object": "#FF9AA2",
@@ -84,7 +85,7 @@ def generate_plantuml_script(nodes):
 
         plantuml_script += f"class {class_name} {class_color} {{\n"
         for key, value in node.items():
-            if key not in ["type", "id", "parent", "object"]:
+            if key not in ["type", "id", "parent"]:
                 plantuml_script += f"  {key}: {value}\n"
         plantuml_script += "}\n\n"
 
